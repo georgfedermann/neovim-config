@@ -1,9 +1,11 @@
 do
-  local message = "local hello!"
-  print(message)
+	local message = "local hello!"
+	print(message)
 
-  vim.o.number = true
-  vim.o.relativenumber = true
+	-- vim.opt.number = true
+	vim.opt.relativenumber = true
+	vim.opt.showmode = false
+	vim.opt.clipboard = "unnamedplus"
 end
 print(message)
 require("options")
