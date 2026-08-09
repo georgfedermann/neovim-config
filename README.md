@@ -2,23 +2,26 @@
 This repository is about learning NeoVim lua configuration.
 It provides an environment for experimentation and learning.
 ## Infrastructure
+### Native test launcher
+`test-config.sh` starts Neovim with repo-local XDG directories, so this
+configuration can be tested without touching the normal Neovim setup.
+Runtime state is written below `.local/` and `.cache/`, which are ignored by Git.
 ### Dockerfile
-Defines a simple setup to spawn an Alpine based container with NeoVim installed.
+Defines an optional Alpine based container with NeoVim installed.
 ### Configuration Files
 A set of NeoVim configuration files are provided in the '.config/nvim' directory.
-This directory will be mounted into the container to provide a persistent and easily
-accessible sample configuration for experimentation and learning.
 ### Usage
-Use `launch.sh` to create a new container with NeoVim installed.
+Use `test-config.sh` to start an isolated native Neovim instance.
 ```bash
-docker build -t neovim-tutor:latest .
-./launch.sh
+./test-config.sh
 ```
 ## Repository Layout
 | File | Description |
 | --- | --- |
 | .config/nvim/init.lua | Main entry point for NeoVim configuration |
-| .config/nvim/lua/options.lua | First required Lua module for NeoVim options configuration |
-| Dockerfile | Disposable learning environment |
-| launch.sh | Starts the container with config directories mounted |
+| .config/nvim/lua/globals/init.lua | Global Neovim variables such as leader keys |
+| .config/nvim/lua/options/init.lua | First required Lua module for Neovim options configuration |
+| test-config.sh | Starts isolated native Neovim with repo-local XDG directories |
+| Dockerfile | Optional disposable container environment |
+| launch.sh | Starts the optional container with config directories mounted |
 | README.md | This file |
